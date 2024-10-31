@@ -12,27 +12,27 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-        }
+			}
         header {
             background-color: #333;
             color: #fff;
             padding: 10px;
             text-align: center;
-        }
+			}
         nav {
             background-color: #444;
             color: white;
             padding: 5px;
             text-align: center;
-        }
+			}
         nav a {
             color: white;
             text-decoration: none;
             margin: 0 15px;
-        }
+			}
         section {
             padding: 20px;
-        }
+			}
         footer {
             background-color: #333;
             color: #fff;
@@ -41,18 +41,38 @@
             position: fixed;
             bottom: 0;
             width: 100%;
-        }
-	h1,h2,p {
-	    margin:0;
-  	    padding:0;
-	}
+			}
+		
+		h1,h2,p {
+			margin:0;
+			padding:0;
+			}
+
+		
+		.tab { 
+			cursor: pointer;
+			padding: 0px; 
+			background-color: #444444; 
+			display: inline-block; }
+			
+		.tab:hover { background-color: #555555; }
+		.tabContent { 
+			display: none; 
+			margin-top: 20px; }
+		.active { display: block; }
+		
+		iframe {
+			border=none; 
+			frameborder=0;
+
+			}
 
     </style>
 </head>
 <body>
 
 <header>
-    <h1 style="font-size: 30px;">我的簡單網頁</h1>
+    <h1 href="#" style="font-size: 30px;">我的簡單網頁</h1>
 </header>
 
 <nav>
@@ -61,14 +81,14 @@
 	<!--    <a href="#contact">聯絡我們</a> -->
 
     <ul class="drop-down-menu">
-            <li><a href="#">首頁</a>
+            <li><a class="tab" onclick="showContent('main')">首頁</a>
             </li>
             <li><a href="#">關於我們</a>
             <li><a href="#">觀測實驗</a>
                 <ul>
-                    <li><a href="#">2024 TACOCO</a>
+                    <li><a class="tab" onclick=loadIframe('./2024TACOCO/2024TACOCO.html')>2024 TACOCO</a>
                     </li>
-                    <li><a href="#">2024 AWESOME</a>
+					<li><a class="tab" onclick=loadIframe('./2024AWESOME/2024AWESOME.html')>2024 AWESOME</a>
                     </li>
                 </ul>
             </li>
@@ -77,15 +97,29 @@
     </ul>
 </nav>
 
-<section>
-    <h2>歡迎來到我的網頁!</h2>
-    <p>這是一個簡單的 HTML 模板，可以用於任何網站。</p>
-    <img src="images/IMG_0274.jpg" width="500"/>
+<section id="iframeSection">
+	<iframe id="iframeContainer" src="" width="100%" height="500" border="none" frameborder="0" allowfullscreen sandbox></iframe>
 </section>
 
 <footer>
     <p style="padding: 2px">&copy;</p>
 </footer>
+
+
+<script>
+
+	
+	 function loadIframe(url) {
+            document.getElementById('iframeContainer').src = url;
+        }
+
+        // 頁面加載時自動顯示第一個 tab 的內容
+        window.onload = function() {
+            loadIframe('./main.html');
+        }
+	
+</script>
+
 
 </body>
 </html>
